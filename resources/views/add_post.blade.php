@@ -34,8 +34,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="slug">Slug</label>
-                                <input type="text" maxlength="100" pattern="^[a-z0-9_-]+$" class="form-control" required id="slug"
+                                <input type="text" maxlength="100" pattern="^[a-z0-9_-]+$" class="form-control" id="slug"
                                        name="slug">
+                                <small id="slug" class="form-text text-muted">Не обязательно для заполнения.</small>
                             </div>
                             <div class="form-group">
                                 <label for="text">Текст поста</label>

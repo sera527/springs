@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -25,10 +26,14 @@ class PostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:100',
-            'slug' => 'regex:/^[a-z0-9_-]+$/|unique:posts,slug|max:100',
+            'slug' => 'nullable|regex:/^[a-z0-9_-]+$/|unique:posts,slug|max:100',
             'text' => 'required|string',
             'users' => 'array'
         ]);
+
+        if (!isset($validatedData['slug'])) {
+            $validatedData['slug'] = Str::slug($validatedData['title']);
+        }
 
         $post = new Post();
         $post->title = $validatedData['title'];
