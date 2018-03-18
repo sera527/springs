@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@index')->name('home');
+Route::get('/add_post', 'PostController@create')->middleware('auth')->name('add_post_form');
+Route::post('/add_post', 'PostController@store')->middleware('auth')->name('add_post');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
