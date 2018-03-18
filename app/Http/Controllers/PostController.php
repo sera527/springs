@@ -54,7 +54,9 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        echo $slug;
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $users = $post->users()->get();
+        return view('post', ['post' => $post, 'users' => $users]);
     }
 
     private function getValidUsers(array $users)
