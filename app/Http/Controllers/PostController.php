@@ -12,7 +12,10 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(5);
+        $count = Post::count();
+
+        return view('home', ['posts' => $posts, 'count' => $count]);
     }
 
     public function create()
