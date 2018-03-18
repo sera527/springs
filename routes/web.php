@@ -14,5 +14,6 @@
 Route::get('/', 'PostController@index')->name('home');
 Route::get('/add_post', 'PostController@create')->middleware('auth')->name('add_post_form');
 Route::post('/add_post', 'PostController@store')->middleware('auth')->name('add_post');
+Route::get('/post/{slug}', 'PostController@show')->where('slug', '^[a-z0-9_-]+$');
 
 Auth::routes();
